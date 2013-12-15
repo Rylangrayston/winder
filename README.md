@@ -14,11 +14,11 @@ Winder looks pretty ugly right now.. but it works great!!
 What is it made of:
 
 code--> arduino--> stepper motor driver--> stepper motors--> spool
-                \                                        \--> coil
-                 \<--varaibel risistor-more wire needed                                                                     
-                  \<-- variable resistor global speed
-                   \<--variable resistor-max spool speed
-                    \<-- IR sensor length of wire on coil
-                     \<--> computer runs code and prints info about the coil
+           |                                         |--> coil
+           |<--varaibel risistor-more wire needed                                                                     
+           |<-- variable resistor global speed
+           |<--variable resistor-max spool speed
+           |<-- IR sensor length of wire on coil
+           |<--> computer runs code and prints info about the coil
 
 
