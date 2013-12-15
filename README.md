@@ -1,4 +1,5 @@
 A machine that automatically winds copper coils to exact specifications.
+Note you can find pics and a little video of the first winder in pics/TheFirstWinder/
 
 There are lots of diy coil winders out there but this one is a bit differnt.
 
@@ -20,5 +21,20 @@ code--> arduino--> stepper motor driver--> stepper motors--> spool
            |<--variable resistor-max spool speed
            |<-- IR sensor length of wire on coil
            |<--> computer runs code and prints info about the coil
+
+
+
+
+
+incase winder isnt what your looking for her are some links to other coil winders. 
+
+http://www.instructables.com/id/Coil-winder-with-automatic-counter/
+http://youtu.be/1SwWuILlH4Q
+http://www.renovatedradios.com/articlePages/Winder2.pdf
+http://www.theprojectasylum.com/electronicsprojects/automaticcoilwinder/automaticcoilwinder.html
+http://solomonsmusic.net/coil_winder.html
+http://www.thingiverse.com/thing:56493
+
+
 
 

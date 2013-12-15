@@ -1,0 +1,26 @@
+Ok if your looking to help but not sure where to start here is my todo list,,, if i ever get to it
+
+1 smoth out the spool motor, right now it simply turns on and off and that really limits how fast 
+we can go without missing stepps. Since it is turned on and of via a threshold of a variable resistor we could turn it on progresivly 
+
+2 if the spool motor stays on for more than say a certain number of loops than it canot keep up with the coil
+mottor... reduce coil motor speed 
+
+3 Need to post a scithmatic of the hardware. 
+
+4. add way more real time ouput of more info like:
+-meeters of wire on coil
+-resistance on coil( already done but could printed more often than detected)
+-number of turns on coil 
+-voltage requred for given amprage 
+-amprage of coil at given voltage. 
+
+5 design auto glue despenser ... think supper small container below tentioner pully 
+with a hole in it ... wire goes thru glue, then throug hole with a very thin bit of glue on it. 
+
+6. Draft up phisical body of winder, to be cut out with laser cutter or cnc router. 
+ 
+7. Document asembly of winder
+
+8. stop and drink a beer. 
+
