@@ -11,7 +11,7 @@ How to use it:
 Enter in the wire gage your using and the desired resistance of your coil then run the script, the script will cause the winder machine to automatically make the coil, once complete the script will print out all the info that it knows about the coil including how many turns are in it!
 Winder looks pretty ugly right now.. but it works great!!
 
-What is it made of:
+What is it made of: (uggg guess you cant draw with text on git hub...)
 
 code--> arduino--> stepper motor driver--> stepper motors--> spool
            |                                         |--> coil
