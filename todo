@@ -22,5 +22,12 @@ with a hole in it ... wire goes thru glue, then throug hole with a very thin bit
  
 7. Document asembly of winder
 
-8. stop and drink a beer. 
+8. add 3rd stepper that guides wire back and forth to spool it on to the coil evenly
+- code so that given wire gage it knows how far to move over each turn 
+- code so that given coil mold width it knows how far to go across the coil. 
+
+
+9. stop and drink a beer ...... while Winder makes coils
+
+
 
