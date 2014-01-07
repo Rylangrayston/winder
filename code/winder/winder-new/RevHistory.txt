@@ -1,0 +1,7 @@
+Newest Changes at top
+
+January 7, 2014 - Trunk (Albert La)
+-added winder-new
+-restructured variables and constants
+-added menu on startup
+-added serial output of data
