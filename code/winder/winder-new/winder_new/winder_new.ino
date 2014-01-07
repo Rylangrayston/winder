@@ -28,14 +28,16 @@ int spoolDetect = 0;
 int spoolSensor = 0;
 int isFirstLoops = 1;
 int wireGauge;
+int dynamicSpeedDivider = 1;  			//speed differnce of the motors
 
 double ohmsGoal;
 double ohmsPerMeter;
-double dynamicCoilOhms = 0;
+double currentCoilOhms = 0;
+double turnsPerMeter;
+double ohmsPerSensorTurn;
 
 //Constants
 const int COILSPEEDMULTIPLIER = 5;		//speed of the coil motor
-const int SPEEDDIVIDER = 1;  			//speed differnce of the motors
 const int LOOPDIVIDER = 100; 			//We can accomplish N things when we go through the loop
 const int MAXSPEED = 100;				//Maximum speed of the spool
 const int STEPSPERREV = 3200;
@@ -48,8 +50,7 @@ const double AWG38OHMS = 2.19;
 const double AWG36OHMS = 1.3;
 const double AWG34OHMS = .844;
 
-double turnsPerMeter = 1000 / SPOOLSENSORCIRC;
-double ohmsPerSensorTurn =   ohmsPerMeter / turnsPerMeter;
+
 
 
 // note A0 will control global speed 
@@ -71,6 +72,10 @@ void setup() {
   wireGauge = AWG36;
   ohmsGoal = 16;
   ohmsPerMeter = AWG36OHMS;
+  //display the menu and get the new settings
+  while(!(Menu()));
+  turnsPerMeter = 1000 / SPOOLSENSORCIRC;
+  ohmsPerSensorTurn =   ohmsPerMeter / turnsPerMeter;
 }
 
 boolean Menu()
@@ -99,14 +104,17 @@ boolean Menu()
   {
     case 1:
       //Impedance
+      Serial.println("Enter Impedance");
       returnCondition = false;
       break;
     case 2:
       //Wire Gauge
+      Serial.println("Enter wire gauge");
       returnCondition = false;
       break;
     case 3:
       //Make the coil
+      Serial.println("Lets make a coil wooooooooooooooooo!!!");
       returnCondition = true;
       break;
     default:
@@ -120,7 +128,68 @@ boolean Menu()
 
 void loop()
 {
-    while(!(Menu()));
+  // just a startup thing to knwo the motors work.
+  while(isFirstLoops < 500){
+    digitalWrite(motEnable, LOW);
+    ++isFirstLoops;
+    digitalWrite(mot1Step, HIGH);
+    digitalWrite(mot1Step, LOW);
+    delayMicroseconds(500);
+  }
+ 
+ /// here where it all begins:
+  ++loopCount;
+  if (loopCount > LOOPDIVIDER){
+   loopCount = 0;
+   globalSpeed = analogRead(A0);
+   dynamicSpeedDivider = analogRead(A1)/50; 
+   spoolSensor = analogRead(A2);
+    
+  if(spoolSensor < 200){spoolDetect = 0;}
+
+  if(spoolSensor > 700 && spoolDetect == 0){
+    spoolDetect = 1;
+    ++spoolCount;
+    currentCoilOhms += ohmsPerSensorTurn;
+    Serial.print("Ohms off spool: ");
+    Serial.println(currentCoilOhms);
+    if (currentCoilOhms > ohmsGoal){
+      Serial.print("you coil has an Ohms resistance of: ");
+      Serial.println(currentCoilOhms);
+      Serial.print("your coil has this many turns: ");
+      Serial.println(coilTurns);
+      Serial.print("the spool count was: ");
+      Serial.println(spoolCount);
+      Serial.println("finished");
+      while(true){}
+    }
+  }
+    
+    
+    
+  }
+ delayMicroseconds(globalSpeed + MAXSPEED);
+ 
+ ++speedDividerCount;
+ if(speedDividerCount > dynamicSpeedDivider){
+   speedDividerCount = 0;
+   digitalWrite(mot2Step, HIGH);
+   digitalWrite(mot2Step, LOW);
+ }
+    
+ for(int x = 0; x< COILSPEEDMULTIPLIER; ++x){
+   digitalWrite(mot1Step, HIGH);
+   digitalWrite(mot1Step, LOW);
+     
+ }
+ coilMotStepCount += COILSPEEDMULTIPLIER;
+ if(coilMotStepCount > STEPSPERREV){
+   coilMotStepCount -= STEPSPERREV;
+   ++coilTurns;
+   Serial.print("Coil Turns: "); Serial.println(coilTurns);
+   Serial.print("Current Ohms: "); Serial.println(currentCoilOhms);
+ }
+    
 
 }
 
