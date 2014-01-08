@@ -81,10 +81,11 @@ void setup() {
 boolean Menu()
 {
   int menuOption = 0;
+  int incomingByte;
   boolean returnCondition = false;
   //Display menu choose options
   Serial.println("****************************************");
-  Serial.println("		Choose an option:");
+  Serial.println("      Choose an option:");
   Serial.println("	1.  Enter impedance");
   Serial.println("	2.  Enter wire gauge");
   Serial.println("	3.  Make coil");
@@ -105,11 +106,55 @@ boolean Menu()
     case 1:
       //Impedance
       Serial.println("Enter Impedance");
+      while(!Serial.available());
+      if (Serial.available() > 0)
+      {
+        ohmsGoal = Serial.parseInt();
+      }
       returnCondition = false;
       break;
     case 2:
       //Wire Gauge
-      Serial.println("Enter wire gauge");
+      Serial.println("****************************************");
+      Serial.println("  Choose Wire Gauge:");
+      Serial.println("	1.  AWG 42");
+      Serial.println("	2.  AWG 40");
+      Serial.println("	3.  AWG 38");
+      Serial.println("	4.  AWG 36");
+      Serial.println("	5.  AWG 34");
+      Serial.println("****************************************");
+      while(!Serial.available());
+      if (Serial.available() > 0)
+      {
+        incomingByte = Serial.parseInt();
+      }
+      switch(incomingByte)
+      {
+        case 1:
+          wireGauge = AWG42;
+          ohmsPerMeter = AWG42OHMS;
+          break;
+        case 2:
+          wireGauge = AWG40;
+          ohmsPerMeter = AWG40OHMS;
+          break;
+        case 3:
+          wireGauge = AWG38;
+          ohmsPerMeter = AWG38OHMS;
+          break;
+        case 4:
+          wireGauge = AWG36;
+          ohmsPerMeter = AWG36OHMS;
+          break;
+        case 5:
+          wireGauge = AWG34;
+          ohmsPerMeter = AWG34OHMS;
+          break;
+        default:
+          wireGauge = AWG36;
+          ohmsPerMeter = AWG36OHMS;
+          break;
+      }
       returnCondition = false;
       break;
     case 3:
@@ -186,8 +231,8 @@ void loop()
  if(coilMotStepCount > STEPSPERREV){
    coilMotStepCount -= STEPSPERREV;
    ++coilTurns;
-   Serial.print("Coil Turns: "); Serial.println(coilTurns);
-   Serial.print("Current Ohms: "); Serial.println(currentCoilOhms);
+   //Serial.print("Coil Turns: "); Serial.println(coilTurns);
+   //Serial.print("Current Ohms: "); Serial.println(currentCoilOhms);
  }
     
 

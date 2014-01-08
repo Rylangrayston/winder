@@ -1,6 +1,10 @@
 Newest Changes at top
 
-January 7, 2014 - Trunk (Albert La)
+January 8, 2013 - Master (Albert La)
+-Fleshed out menu Items
+-removed serial debugging to speed up motor control
+
+January 7, 2014 - Master (Albert La)
 -added winder-new
 -restructured variables and constants
 -added menu on startup
