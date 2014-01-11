@@ -37,7 +37,7 @@ double turnsPerMeter;
 double ohmsPerSensorTurn;
 
 //Constants
-const int COILSPEEDMULTIPLIER = 5;		//speed of the coil motor
+const int COILSPEEDMULTIPLIER = 1;		//speed of the coil motor
 const int LOOPDIVIDER = 100; 			//We can accomplish N things when we go through the loop
 const int MAXSPEED = 100;				//Maximum speed of the spool
 const int STEPSPERREV = 3200;
